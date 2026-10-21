@@ -265,15 +265,53 @@
 }
 
 @media (max-width: 640px) {
+  .projects-section {
+    padding-block: 3.5rem;
+  }
+
+  .projects__status-banner {
+    flex-direction: column;
+    padding: 1.25rem 1rem;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .projects__block-header h3 {
+    font-size: 1.4rem;
+  }
+
   .projects__areas-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .area-card {
+    padding: 1.5rem 1.25rem;
   }
 
   .projects__diff-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .diff-card {
+    padding: 1.25rem;
+  }
+
+  .projects__models-card {
+    padding: 1.5rem 1.25rem;
   }
 
   .models-grid {
     grid-template-columns: 1fr;
+  }
+
+  .models-card__action {
+    width: 100%;
+  }
+
+  .models-card__action .btn {
+    width: 100%;
+    justify-content: center;
   }
 }

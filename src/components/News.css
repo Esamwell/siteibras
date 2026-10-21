@@ -559,3 +559,138 @@
   text-decoration: underline;
 }
 
+/* ============================================================
+   Responsive Mobile & Tablet (Desktop stays 100% intact)
+   ============================================================ */
+
+@media (max-width: 992px) {
+  .news__featured-card {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .featured-card__media {
+    min-height: 260px;
+    height: 260px;
+  }
+
+  .featured-card__body {
+    padding: 2rem 1.75rem;
+  }
+
+  .news__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .news__controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .news__categories {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    margin-inline: -0.5rem;
+    padding-inline: 0.5rem;
+  }
+
+  .news__cat-pill {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.85rem;
+  }
+
+  .news__search-box {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .featured-card__media {
+    min-height: 200px;
+    height: 200px;
+  }
+
+  .featured-card__body {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .featured-card__title {
+    font-size: 1.3rem;
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+  }
+
+  .featured-card__summary {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+
+  .featured-card__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .news__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .news-card__media {
+    height: 180px;
+  }
+
+  .news-card__body {
+    padding: 1.25rem;
+  }
+
+  .news-card__title {
+    font-size: 1.1rem;
+  }
+
+  .news-modal__card {
+    margin: 1rem;
+    max-height: 94vh;
+  }
+
+  .news-modal__header {
+    padding: 1.25rem 1.25rem 0.75rem;
+  }
+
+  .news-modal__title {
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+
+  .news-modal__img-wrap {
+    max-height: 220px;
+  }
+
+  .news-modal__body {
+    padding: 1.25rem;
+  }
+
+  .news-modal__footer {
+    padding: 1rem 1.25rem;
+  }
+
+  .news-modal__footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .news__see-all-btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
