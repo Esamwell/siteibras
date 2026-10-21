@@ -1,0 +1,38 @@
+[
+  {
+    "id": "noticia-1",
+    "title": "IBRAS participa de debates nacionais sobre inclusão digital e telecomunicações",
+    "slug": "ibras-debates-nacionais-inclusao-digital",
+    "summary": "Representação ativa em fóruns promovidos pela Anatel e Ministério das Comunicações em defesa dos direitos dos usuários e do acesso universal.",
+    "content": "O Instituto Brasileiro de Atenção Social (IBRAS) participou ativamente de encontros e painéis nacionais voltados à defesa da cidadania digital e ao fortalecimento do Conselho de Usuários de Telecomunicações. Durante os eventos promovidos junto a órgãos federais e agências reguladoras, foram pontuadas as necessidades de ampliação da conectividade comunitária em regiões de maior vulnerabilidade social na Bahia e no Brasil, reafirmando o compromisso da sociedade civil com a transparência e a garantia dos direitos fundamentais da população.",
+    "category": "Cidadania",
+    "imageUrl": "/equipe/painel-mundo-digital.jpg",
+    "publishedAt": "2026-10-15",
+    "author": "Comunicação IBRAS",
+    "featured": true
+  },
+  {
+    "id": "noticia-2",
+    "title": "Diretoria e Conselho realizam reunião estratégica de governança para novos projetos",
+    "slug": "reuniao-estrategica-governanca-novos-projetos",
+    "summary": "Alinhamento institucional avalia diretrizes para novas parcerias no âmbito do MROSC e expansão de ações comunitárias em Salvador.",
+    "content": "Reunidos na sede institucional em Salvador, membros da Diretoria Executiva e do Conselho Estratégico do IBRAS concluíram mais uma etapa de planejamento para o ciclo vigente. Entre as pautas centrais estiveram a conformidade das prestações de contas, a avaliação dos pilares de atendimento humanizado e a formatação de novos termos de fomento e colaboração voltados à formação cidadã e assistência social.",
+    "category": "Institucional",
+    "imageUrl": "/equipe/reuniao-planejamento.jpg",
+    "publishedAt": "2026-10-02",
+    "author": "Secretaria Geral",
+    "featured": false
+  },
+  {
+    "id": "noticia-3",
+    "title": "Mobilização social e engajamento no Programa Bahia Estado Voluntário",
+    "slug": "mobilizacao-social-bahia-estado-voluntario",
+    "summary": "Ações de voluntariado e solidariedade conectam cidadãos para transformar realidades em comunidades vulneráveis.",
+    "content": "O IBRAS reforçou sua participação nas iniciativas de mobilização comunitária em parceria com o programa Bahia Estado Voluntário (BEV). A iniciativa reuniu articuladores sociais e voluntários dedicados à arrecadação de donativos, oficinas educativas e campanhas de conscientização cidadã. O fortalecimento de redes solidárias continua sendo uma das marcas prioritárias da atuação do IBRAS em Salvador e Região Metropolitana.",
+    "category": "Voluntariado",
+    "imageUrl": "/equipe/bahia-estado-voluntario.jpg",
+    "publishedAt": "2026-09-20",
+    "author": "Coordenação de Projetos",
+    "featured": false
+  }
+]

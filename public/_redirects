@@ -1,0 +1,9 @@
+/* Netlify SPA redirect: all routes go to index.html so React Router handles them */
+/*  /           →  homepage (App.tsx)        */
+/*  /noticias   →  full news page            */
+/*  /admin      →  admin dashboard           */
+/*  Any refresh or direct URL access works correctly */
+
+/admin/*  /index.html  200
+/noticias  /index.html  200
+/*         /index.html  200
