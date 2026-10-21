@@ -12,11 +12,7 @@ import {
 import { scrollToSection } from '../utils/navigation'
 import './Footer.css'
 
-interface FooterProps {
-  onOpenAdmin?: () => void
-}
-
-export default function Footer({ onOpenAdmin }: FooterProps) {
+export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
 

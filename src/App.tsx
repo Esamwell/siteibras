@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import './index.css'
 import './App.css'
 import Navbar from './components/Navbar'
@@ -11,11 +11,8 @@ import News from './components/News'
 import Transparency from './components/Transparency'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import AdminNewsModal from './components/AdminNewsModal'
 
 function App() {
-  const [isAdminOpen, setIsAdminOpen] = useState(false)
-
   // Reset page title when returning from /admin or /noticias
   useEffect(() => {
     document.title = 'IBRAS – Instituto Brasileiro de Atenção Social'
@@ -30,17 +27,11 @@ function App() {
         <Pillars />
         <About />
         <Projects />
-        <News onOpenAdmin={() => setIsAdminOpen(true)} />
+        <News />
         <Transparency />
         <Contact />
       </main>
-      <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
-
-      {/* Secure Admin Management Modal */}
-      <AdminNewsModal
-        isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
-      />
+      <Footer />
     </div>
   )
 }
