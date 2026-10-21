@@ -29,7 +29,10 @@ import {
   getStoredUsers,
   saveStoredUsers,
   getActiveSessionUser,
-  setActiveSessionUser
+  setActiveSessionUser,
+  fetchRemoteNews,
+  saveNewsToSupabase,
+  deleteNewsFromSupabase
 } from '../utils/newsStorage'
 import { sha256 } from '../utils/crypto'
 import RichTextEditor from '../components/RichTextEditor'
@@ -90,6 +93,9 @@ export default function AdminPage() {
   const refreshData = () => {
     setNewsList(getStoredNews())
     setUsersList(getStoredUsers())
+    fetchRemoteNews().then((data) => {
+      if (data && data.length > 0) setNewsList(data)
+    })
   }
 
   useEffect(() => {
@@ -173,15 +179,29 @@ export default function AdminPage() {
     const currentList = getStoredNews()
     const today = new Date().toISOString().split('T')[0]
     if (editingNews) {
+      let updatedItem: NewsItem | null = null
       const updatedList = currentList.map((item) => {
         if (item.id === editingNews.id) {
-          return { ...item, title: formTitle.trim(), category: formCategory, summary: formSummary.trim(), content: formContent.trim(), imageUrl: formImageUrl || '/equipe/equipe-geral.jpg', author: formAuthor.trim() || 'Comunicação IBRAS', featured: formFeatured }
+          updatedItem = {
+            ...item,
+            title: formTitle.trim(),
+            category: formCategory,
+            summary: formSummary.trim(),
+            content: formContent.trim(),
+            imageUrl: formImageUrl || '/equipe/equipe-geral.jpg',
+            author: formAuthor.trim() || 'Comunicação IBRAS',
+            featured: formFeatured
+          }
+          return updatedItem
         }
         return formFeatured ? { ...item, featured: false } : item
       })
       saveStoredNews(updatedList)
       setNewsList(updatedList)
-      showFeedback('success', 'Notícia atualizada!')
+      if (updatedItem) {
+        saveNewsToSupabase(updatedItem)
+      }
+      showFeedback('success', 'Notícia atualizada e sincronizada na nuvem!')
     } else {
       const newItem: NewsItem = {
         id: `noticia-${Date.now()}`,
@@ -199,7 +219,8 @@ export default function AdminPage() {
       if (formFeatured) updatedList = updatedList.map((item) => item.id === newItem.id ? item : { ...item, featured: false })
       saveStoredNews(updatedList)
       setNewsList(updatedList)
-      showFeedback('success', 'Notícia publicada!')
+      saveNewsToSupabase(newItem)
+      showFeedback('success', 'Notícia publicada com sucesso na nuvem!')
     }
     setIsCreatingNews(false)
     setEditingNews(null)
@@ -210,7 +231,8 @@ export default function AdminPage() {
       const updatedList = getStoredNews().filter((item) => item.id !== id)
       saveStoredNews(updatedList)
       setNewsList(updatedList)
-      showFeedback('success', 'Notícia removida.')
+      deleteNewsFromSupabase(id)
+      showFeedback('success', 'Notícia removida da nuvem.')
     }
   }
 

@@ -14,7 +14,11 @@ import {
   Filter
 } from 'lucide-react'
 import type { NewsItem } from '../types/news'
-import { getStoredNews } from '../utils/newsStorage'
+import {
+  getStoredNews,
+  fetchRemoteNews,
+  subscribeToNewsChanges
+} from '../utils/newsStorage'
 import '../components/News.css'
 import './NoticiasPage.css'
 
@@ -34,6 +38,14 @@ export default function NoticiasPage() {
     const reload = () => setNews(getStoredNews())
     reload()
 
+    fetchRemoteNews().then((data) => {
+      if (data && data.length > 0) setNews(data)
+    })
+
+    const unsubscribe = subscribeToNewsChanges(() => {
+      reload()
+    })
+
     // Same-tab updates
     window.addEventListener('ibras_news_updated', reload)
 
@@ -48,12 +60,14 @@ export default function NoticiasPage() {
       }
       window.addEventListener('storage', handleStorage)
       return () => {
+        unsubscribe()
         window.removeEventListener('ibras_news_updated', reload)
         window.removeEventListener('storage', handleStorage)
       }
     }
 
     return () => {
+      unsubscribe()
       window.removeEventListener('ibras_news_updated', reload)
       bc?.close()
     }

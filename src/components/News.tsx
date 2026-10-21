@@ -10,7 +10,11 @@ import {
   X
 } from 'lucide-react'
 import type { NewsItem } from '../types/news'
-import { getStoredNews } from '../utils/newsStorage'
+import {
+  getStoredNews,
+  fetchRemoteNews,
+  subscribeToNewsChanges
+} from '../utils/newsStorage'
 import './News.css'
 
 const CATEGORIES = ['Todas', 'Institucional', 'Cidadania', 'Parcerias', 'Voluntariado', 'Eventos']
@@ -26,6 +30,14 @@ export default function News() {
 
   useEffect(() => {
     reloadNews()
+    fetchRemoteNews().then((data) => {
+      if (data && data.length > 0) setNews(data)
+    })
+
+    // Supabase Real-time Cloud updates
+    const unsubscribe = subscribeToNewsChanges(() => {
+      reloadNews()
+    })
 
     // Same-tab updates (admin panel modal)
     window.addEventListener('ibras_news_updated', reloadNews)
@@ -44,12 +56,14 @@ export default function News() {
       }
       window.addEventListener('storage', handleStorage)
       return () => {
+        unsubscribe()
         window.removeEventListener('ibras_news_updated', reloadNews)
         window.removeEventListener('storage', handleStorage)
       }
     }
 
     return () => {
+      unsubscribe()
       window.removeEventListener('ibras_news_updated', reloadNews)
       bc?.close()
     }
