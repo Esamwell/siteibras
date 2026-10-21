@@ -25,12 +25,8 @@ export default function Contact() {
 
   const [submitError, setSubmitError] = useState('')
 
-  // ─── Formspree endpoint ───────────────────────────────────────────
-  // 1. Acesse https://formspree.io e crie conta com contato@ibrasinstituto.org
-  // 2. Crie um novo Form → copie o ID (ex: "xpwzabcd")
-  // 3. Substitua FORMSPREE_ID abaixo pelo seu ID real
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/FORMSPREE_ID'
-  // ─────────────────────────────────────────────────────────────────
+  // Envio automático para contato@ibrasinstituto.org via FormSubmit (sem necessidade de API key externa)
+  const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/contato@ibrasinstituto.org'
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -38,17 +34,22 @@ export default function Contact() {
     setSubmitError('')
 
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone || '—',
+          phone: formData.phone || 'Não informado',
           subject: formData.subject,
           message: formData.message,
+          _subject: `[Contato Site IBRAS] ${formData.subject} - ${formData.name}`,
           _replyto: formData.email,
-          _subject: `[IBRAS Site] ${formData.subject}`
+          _template: 'table',
+          _captcha: 'false'
         })
       })
 
@@ -57,12 +58,12 @@ export default function Contact() {
       } else {
         const data = await res.json().catch(() => ({}))
         setSubmitError(
-          data?.errors?.[0]?.message ||
-          'Não foi possível enviar a mensagem. Tente novamente ou envie diretamente para contato@ibrasinstituto.org'
+          data?.message ||
+          'Não foi possível enviar a mensagem automaticamente. Envie diretamente para contato@ibrasinstituto.org'
         )
       }
     } catch {
-      setSubmitError('Erro de conexão. Verifique sua internet ou envie diretamente para contato@ibrasinstituto.org')
+      setSubmitError('Erro de conexão. Verifique sua conexão ou envie diretamente para contato@ibrasinstituto.org')
     } finally {
       setIsSubmitting(false)
     }
