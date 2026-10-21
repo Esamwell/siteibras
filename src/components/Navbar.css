@@ -47,6 +47,19 @@
   transform: scale(1.04);
 }
 
+/* Anchor and button variants must render identically (same UA defaults) */
+.navbar__link,
+.navbar__mobile-link {
+  font-family: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
 /* Desktop Navigation Links */
 .navbar__nav {
   display: flex;
@@ -165,6 +178,9 @@
   }
 
   .navbar__mobile-link {
+    display: block;
+    width: 100%;
+    text-align: center;
     font-size: 0.95rem;
     font-weight: 600;
     color: #334155;
